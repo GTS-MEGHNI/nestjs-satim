@@ -1,0 +1,85 @@
+name: Bug Report
+description: Report something that is not working as expected.
+title: '[Bug]: '
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug. Please complete the fields below so we can reproduce the issue quickly.
+
+        Never paste your SATIM credentials, a real order id, or an unredacted gateway payload. The package redacts `userName` and `password` in everything it hands back, and `rawResponse` may still carry cardholder details.
+
+  - type: input
+    id: package-version
+    attributes:
+      label: Package Version
+      description: Provide the @gts-meghni/nestjs-satim version that you are using.
+      placeholder: 1.0.0
+    validations:
+      required: true
+
+  - type: input
+    id: nestjs-version
+    attributes:
+      label: NestJS Version
+      description: Provide the @nestjs/core version that you are using.
+      placeholder: 11.1.29
+    validations:
+      required: true
+
+  - type: input
+    id: node-version
+    attributes:
+      label: Node Version
+      description: Provide the Node.js version that you are using.
+      placeholder: 22.11.0
+    validations:
+      required: true
+
+  - type: dropdown
+    id: call-store
+    attributes:
+      label: Audit Store
+      description: Which store is bound under SATIM_CALL_STORE?
+      options:
+        - In memory (the default)
+        - TypeORM
+        - Prisma
+        - A store of my own
+        - Not relevant to this issue
+    validations:
+      required: true
+
+  - type: input
+    id: operating-system
+    attributes:
+      label: Operating System
+      description: If relevant, provide the operating system and version where this occurs.
+      placeholder: macOS 15.0, Ubuntu 24.04, Windows 11
+    validations:
+      required: false
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Provide a clear description of the issue you are facing.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps To Reproduce
+      description: Provide detailed steps to reproduce the issue. A failing test using SatimFake is the fastest way to get this fixed, and a minimal reproduction repository is helpful when possible.
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Add any other context that might help diagnose the issue.
+    validations:
+      required: false

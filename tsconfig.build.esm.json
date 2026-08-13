@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    // The package itself is CommonJS ("type": "commonjs"), so a NodeNext build
+    // would emit CommonJS here too. These two settings are what make the second
+    // build real ESM; dist/esm/package.json then declares it as such.
+    "module": "ES2022",
+    "moduleResolution": "Bundler",
+    "outDir": "dist/esm",
+    "rootDir": "src"
+  },
+  "include": ["src"]
+}
