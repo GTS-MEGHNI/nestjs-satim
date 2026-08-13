@@ -149,7 +149,7 @@
     "publint": "^0.3.23",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.2",
-    "typeorm": "^0.3.31",
+    "typeorm": "^1.1.0",
     "typescript": "~5.9.3",
     "unplugin-swc": "^1.5.11",
     "vitest": "^4.1.10"
