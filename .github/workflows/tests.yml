@@ -1,0 +1,82 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        node: [20, 22, 24]
+        include:
+          - os: windows-latest
+            node: 22
+
+    name: node ${{ matrix.node }} on ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Validate
+        run: pnpm run validate
+
+  peers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    name: without the optional peers
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm run build
+
+      # The core must load with typeorm and @nestjs/event-emitter absent, which
+      # is what "optional peer" has to mean in practice.
+      - name: Remove the optional peers
+        run: rm -rf node_modules/typeorm node_modules/@nestjs/event-emitter
+
+      - name: Import the core entry point
+        run: |
+          node -e "const s=require('./dist/cjs/index.js'); if(!s.SatimModule) process.exit(1)"
+          node --input-type=module -e "import('./dist/esm/index.js').then(s => { if(!s.SatimModule) process.exit(1) })"

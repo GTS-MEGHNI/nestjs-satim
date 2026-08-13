@@ -1,0 +1,7 @@
+# Keep line endings LF in the working tree on every platform. Prettier is
+# configured for LF, so a CRLF checkout on Windows fails the format check on
+# every file at once.
+* text=auto eol=lf
+
+*.png binary
+pnpm-lock.yaml -diff linguist-generated

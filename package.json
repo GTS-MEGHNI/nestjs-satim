@@ -1,0 +1,168 @@
+{
+  "name": "@gts-meghni/nestjs-satim",
+  "version": "1.0.0",
+  "description": "Accept CIB and Edahabia card payments in NestJS through the Algerian SATIM gateway, with typed results, an ORM-agnostic audit trail, and multilingual receipts.",
+  "keywords": [
+    "nestjs",
+    "satim",
+    "cib",
+    "edahabia",
+    "algeria",
+    "payment",
+    "payment-gateway",
+    "epayment"
+  ],
+  "homepage": "https://github.com/gts-meghni/nestjs-satim",
+  "bugs": "https://github.com/gts-meghni/nestjs-satim/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gts-meghni/nestjs-satim.git"
+  },
+  "license": "MIT",
+  "type": "commonjs",
+  "author": {
+    "name": "GTS-MEGHNI",
+    "email": "meghniucrpg@live.fr"
+  },
+  "sideEffects": false,
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/cjs/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    },
+    "./testing": {
+      "import": {
+        "types": "./dist/esm/testing/index.d.ts",
+        "default": "./dist/esm/testing/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/testing/index.d.ts",
+        "default": "./dist/cjs/testing/index.js"
+      }
+    },
+    "./typeorm": {
+      "import": {
+        "types": "./dist/esm/typeorm/index.d.ts",
+        "default": "./dist/esm/typeorm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/typeorm/index.d.ts",
+        "default": "./dist/cjs/typeorm/index.js"
+      }
+    },
+    "./prisma": {
+      "import": {
+        "types": "./dist/esm/prisma/index.d.ts",
+        "default": "./dist/esm/prisma/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/prisma/index.d.ts",
+        "default": "./dist/cjs/prisma/index.js"
+      }
+    },
+    "./event-emitter": {
+      "import": {
+        "types": "./dist/esm/event-emitter/index.d.ts",
+        "default": "./dist/esm/event-emitter/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/event-emitter/index.d.ts",
+        "default": "./dist/cjs/event-emitter/index.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "assets",
+    "prisma",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE.md"
+  ],
+  "engines": {
+    "node": ">=20.19"
+  },
+  "scripts": {
+    "build": "pnpm run build:clean && pnpm run build:cjs && pnpm run build:esm && pnpm run build:flags",
+    "build:clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",
+    "build:cjs": "tsc -p tsconfig.build.cjs.json",
+    "build:esm": "tsc -p tsconfig.build.esm.json",
+    "build:flags": "node scripts/write-dist-type-flags.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "check:publish": "publint && attw --pack . --profile node16",
+    "validate": "pnpm run lint && pnpm run format:check && pnpm run typecheck && pnpm run test:coverage && pnpm run build && pnpm run check:publish"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^11.0.0",
+    "@nestjs/core": "^11.0.0",
+    "@nestjs/event-emitter": "^3.0.0",
+    "@nestjs/schedule": "^6.0.0",
+    "@prisma/client": "^6.0.0 || ^7.0.0",
+    "reflect-metadata": "^0.2.0",
+    "rxjs": "^7.8.0",
+    "typeorm": "^0.3.20 || ^1.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@nestjs/event-emitter": {
+      "optional": true
+    },
+    "@nestjs/schedule": {
+      "optional": true
+    },
+    "typeorm": {
+      "optional": true
+    },
+    "@prisma/client": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
+    "@nestjs/common": "^11.1.29",
+    "@nestjs/core": "^11.1.29",
+    "@nestjs/event-emitter": "^3.1.0",
+    "@nestjs/schedule": "^6.1.3",
+    "@nestjs/testing": "^11.1.29",
+    "@swc/core": "^1.15.47",
+    "@types/node": "^22.20.1",
+    "@vitest/coverage-v8": "^4.1.10",
+    "better-sqlite3": "^12.11.1",
+    "oxlint": "^1.78.0",
+    "prettier": "^3.9.6",
+    "publint": "^0.3.23",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "typeorm": "^0.3.31",
+    "typescript": "~5.9.3",
+    "unplugin-swc": "^1.5.11",
+    "vitest": "^4.1.10"
+  },
+  "packageManager": "pnpm@10.18.3",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@swc/core",
+      "better-sqlite3"
+    ]
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}
