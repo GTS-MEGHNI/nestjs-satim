@@ -85,6 +85,17 @@ describe('receipt', () => {
     expect(receipt.supportMessage).toContain('3020');
   });
 
+  it('gives the hotline text on its own, for a rejected return page', async () => {
+    const { satim } = await harness();
+
+    expect(satim.supportMessage(SatimLanguage.FR)).toBe(
+      'En cas de problème de paiement, veuillez contacter le numéro vert de la SATIM 3020',
+    );
+    expect(satim.supportMessage(SatimLanguage.AR)).toContain('3020');
+    expect(satim.supportMessage()).toBe(satim.supportMessage(SatimLanguage.FR));
+    expect(() => satim.supportMessage('de')).toThrow(SatimValidationError);
+  });
+
   it('shows an unknown currency exactly as SATIM sent it', async () => {
     const { satim } = await harness({
       acknowledge: SatimFakeResponse.paid(1000, 'K9m2X7qL4P', '913180', '6280****7215', 'ok', {

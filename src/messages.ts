@@ -24,15 +24,15 @@ export interface SatimMessages {
 export const SATIM_MESSAGES: Record<SatimLanguage, SatimMessages> = {
   [SatimLanguage.EN]: {
     transactionRejected: 'Your transaction was rejected',
-    supportMessage: 'If you have a payment issue, please contact SATIM hotline 3020',
+    supportMessage: 'If you have a payment issue, please contact the SATIM toll-free number 3020',
   },
   [SatimLanguage.FR]: {
     transactionRejected: 'Votre transaction a été rejetée',
-    supportMessage: 'En cas de problème de paiement, veuillez contacter la hotline SATIM 3020',
+    supportMessage: 'En cas de problème de paiement, veuillez contacter le numéro vert de la SATIM 3020',
   },
   [SatimLanguage.AR]: {
     transactionRejected: 'تم رفض معاملتك',
-    supportMessage: 'إذا واجهت مشكلة في الدفع، يرجى الاتصال بالخط الساخن لساتيم 3020',
+    supportMessage: 'إذا واجهت مشكلة في الدفع، يرجى الاتصال بالرقم الأخضر لساتيم 3020',
   },
 };
 

@@ -345,6 +345,20 @@ export class SatimService {
   }
 
   /**
+   * Hotline text, which the spec requires beside the SATIM logo and never on
+   * its own.
+   *
+   * SATIM requires it on a rejected return page too, where there is no receipt
+   * to carry it, so it is available on its own.
+   *
+   * @param language Defaults to the configured language.
+   * @throws SatimValidationError
+   */
+  supportMessage(language?: SatimLanguage | string): string {
+    return messagesFor(this.resolveLanguage(language)).supportMessage;
+  }
+
+  /**
    * SATIM answers with an ISO currency number, which means nothing on a
    * receipt. Only DZD is in use, so anything else is shown as sent.
    */

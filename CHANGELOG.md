@@ -2,6 +2,16 @@
 
 All notable changes to `@gts-meghni/nestjs-satim` will be documented in this file.
 
+## v1.1.0 - 2026-08-17
+
+### Added
+
+- `SatimService.supportMessage()`, which returns the SATIM hotline text on its own, in the language you ask for and the configured one by default. SATIM requires that text on a rejected return page, where there is no receipt to carry it and `receipt()` throws for a payment that was not made.
+
+### Changed
+
+- The hotline text now names SATIM's toll-free number the way the integration guide does: "numéro vert de la SATIM" in French, with English and Arabic reworded to match. The number itself is unchanged.
+
 ## v1.0.0 - 2026-08-13
 
 First release: the NestJS port of [gts-meghni/laravel-satim](https://github.com/gts-meghni/laravel-satim).

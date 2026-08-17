@@ -1,6 +1,6 @@
 {
   "name": "@gts-meghni/nestjs-satim",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Accept CIB and Edahabia card payments in NestJS through the Algerian SATIM gateway, with typed results, an ORM-agnostic audit trail, and multilingual receipts.",
   "keywords": [
     "nestjs",

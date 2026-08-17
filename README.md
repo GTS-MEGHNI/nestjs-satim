@@ -110,6 +110,16 @@ result.cancelled(); // authorisation reversed
 
 Whether the money moved is decided by `respCode`, `errorCode` and `orderStatus` read together, never by one alone. `paid()` is that rule.
 
+`message` is the text to display and persist: SATIM's `respCode_desc`, falling back to `actionCodeDescription` when it is empty, except on a reversed authorisation (`respCode` `00`, `errorCode` `0`, `orderStatus` `3`), where SATIM reports no error of its own and fixed wording is used instead. That wording follows the language of the call, in French, English and Arabic.
+
+SATIM requires the hotline text on a rejected return page too, where there is no receipt to carry it. `supportMessage()` gives it on its own, in the language you ask for and the configured one by default:
+
+```ts
+const hotline = this.satim.supportMessage(SatimLanguage.FR);
+```
+
+Show it beside the SATIM logo, never the text alone. `messagesFor(language)` exposes both strings directly if you prefer.
+
 ## Refund
 
 ```ts
