@@ -2,6 +2,10 @@
 
 All notable changes to `@gts-meghni/nestjs-satim` will be documented in this file.
 
+## v1.1.1 - 2026-08-17
+
+Same code as v1.1.0, which never reached the registry: its release run failed a formatting check before the publish step.
+
 ## v1.1.0 - 2026-08-17
 
 ### Added
