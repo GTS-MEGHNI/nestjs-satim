@@ -28,7 +28,8 @@ export const SATIM_MESSAGES: Record<SatimLanguage, SatimMessages> = {
   },
   [SatimLanguage.FR]: {
     transactionRejected: 'Votre transaction a été rejetée',
-    supportMessage: 'En cas de problème de paiement, veuillez contacter le numéro vert de la SATIM 3020',
+    supportMessage:
+      'En cas de problème de paiement, veuillez contacter le numéro vert de la SATIM 3020',
   },
   [SatimLanguage.AR]: {
     transactionRejected: 'تم رفض معاملتك',
