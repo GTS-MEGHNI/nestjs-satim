@@ -142,7 +142,7 @@
     "@nestjs/testing": "^11.1.29",
     "@swc/core": "^1.15.47",
     "@types/node": "^22.20.1",
-    "@vitest/coverage-v8": "^4.1.10",
+    "@vitest/coverage-v8": "^5.0.4",
     "better-sqlite3": "^12.11.1",
     "oxlint": "^1.78.0",
     "prettier": "^3.9.6",
@@ -152,7 +152,7 @@
     "typeorm": "^0.3.31",
     "typescript": "~5.9.3",
     "unplugin-swc": "^1.5.11",
-    "vitest": "^4.1.10"
+    "vitest": "^5.0.4"
   },
   "packageManager": "pnpm@10.18.3",
   "pnpm": {
