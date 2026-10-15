@@ -27,6 +27,13 @@ updates:
       # Microsoft plans to restore it in 7.1, so hold at 5.x majors until then.
       - dependency-name: 'typescript'
         update-types: ['version-update:semver-major']
+      # Vitest 5 declares engines node ^22.12.0 || ^24.0.0 || >=26.0.0, which
+      # drops Node 20. Same reasoning as better-sqlite3 above: a major bump
+      # would stop the test suite running on the oldest supported runtime.
+      - dependency-name: 'vitest'
+        update-types: ['version-update:semver-major']
+      - dependency-name: '@vitest/*'
+        update-types: ['version-update:semver-major']
     groups:
       nestjs:
         patterns:
