@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   update:
@@ -24,9 +25,14 @@ jobs:
           latest-version: ${{ github.event.release.name }}
           release-notes: ${{ github.event.release.body }}
 
-      - name: Commit updated changelog
-        uses: stefanzweifel/git-auto-commit-action@4a55954c782fc1ea30b9056cd3e7a2b40ca8887d # v7
+      # main is protected, so the changelog lands through a pull request.
+      - name: Open changelog pull request
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
-          branch: main
-          commit_message: Update CHANGELOG
-          file_pattern: CHANGELOG.md
+          base: main
+          branch: changelog/${{ github.event.release.tag_name }}
+          add-paths: CHANGELOG.md
+          commit-message: Update CHANGELOG
+          title: Update CHANGELOG for ${{ github.event.release.name }}
+          body: Automated changelog update for release ${{ github.event.release.tag_name }}.
+          delete-branch: true
