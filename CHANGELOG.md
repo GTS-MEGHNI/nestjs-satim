@@ -2,6 +2,12 @@
 
 All notable changes to `@gts-meghni/nestjs-satim` will be documented in this file.
 
+## v1.2.0 - 2026-10-17
+
+### Added
+
+- Support for NestJS 12. The peer ranges now accept `@nestjs/common` and `@nestjs/core` `^11 || ^12`, `@nestjs/event-emitter` `^3 || ^12`, and `@nestjs/schedule` `^6 || ^12`. NestJS 11 is still supported and tested.
+
 ## v1.1.1 - 2026-08-17
 
 Same code as v1.1.0, which never reached the registry: its release run failed a formatting check before the publish step.
@@ -40,6 +46,7 @@ Requires Node 20.19 or newer and NestJS 11.
 
 ```bash
 pnpm add @gts-meghni/nestjs-satim
+
 
 ```
 ## 1.0.0
