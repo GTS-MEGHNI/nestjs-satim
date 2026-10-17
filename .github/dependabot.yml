@@ -34,6 +34,11 @@ updates:
         update-types: ['version-update:semver-major']
       - dependency-name: '@vitest/*'
         update-types: ['version-update:semver-major']
+      # @types/node must track the oldest supported runtime (engines node
+      # >=20.19). Newer majors type APIs that Node 20 lacks, so code could
+      # typecheck here and still crash for consumers on the oldest runtime.
+      - dependency-name: '@types/node'
+        update-types: ['version-update:semver-major']
     groups:
       nestjs:
         patterns:
