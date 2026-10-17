@@ -47,6 +47,38 @@ jobs:
       - name: Validate
         run: pnpm run validate
 
+  nestjs-11:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    name: nestjs 11
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # The dev dependencies track NestJS 12, but the peer range still promises
+      # 11, so the suite has to keep passing against the older major too.
+      - name: Install NestJS 11
+        run: pnpm add -D @nestjs/common@^11 @nestjs/core@^11 @nestjs/testing@^11 @nestjs/event-emitter@^3 @nestjs/schedule@^6
+
+      - name: Typecheck
+        run: pnpm run typecheck
+
+      - name: Test
+        run: pnpm test
+
   peers:
     runs-on: ubuntu-latest
     timeout-minutes: 10

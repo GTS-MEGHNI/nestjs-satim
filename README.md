@@ -24,7 +24,7 @@ This is the NestJS port of [gts-meghni/laravel-satim](https://github.com/gts-meg
 pnpm add @gts-meghni/nestjs-satim
 ```
 
-Requires Node 20.19 or newer and NestJS 11. The package has **no runtime dependencies**: it talks to the gateway through Node's own `fetch`.
+Requires Node 20.19 or newer and NestJS 11 or 12. The package has **no runtime dependencies**: it talks to the gateway through Node's own `fetch`.
 
 ## Register the module
 
