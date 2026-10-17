@@ -30,6 +30,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # Trusted publishing authenticates through the workflow's OIDC token
+      # instead of a stored NPM_TOKEN, and needs npm 11.5.1 or newer.
+      - name: Update npm
+        run: npm install -g npm@^11.5.1
+
       # Nothing is published that has not passed everything CI runs, including
       # the packaging checks.
       - name: Validate
@@ -61,6 +66,4 @@ jobs:
 
       - name: Publish to npm
         if: steps.published.outputs.skip == 'false'
-        run: pnpm publish --no-git-checks --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --access public
